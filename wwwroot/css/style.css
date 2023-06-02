@@ -1,3 +1,15 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: .04rem;
+}
+
+.sectionsHeader {
+    font-weight: 900;
+}
+
+.headerSpan {
+    color: #713d1b;
+}
 /* navbar section */
 .nav-style {
     background-color: rgba(81, 42, 16, .93);
@@ -7,7 +19,6 @@
 .Logo {
     font-weight: 700;
     font-size: 1.8rem;
-    font-family: "Segoe UI";
     letter-spacing: .2px;
     color: #fff;
     text-decoration: none;
@@ -37,17 +48,20 @@
     height: 100vh;
     color: rgba(255, 255, 255, 555.9);
 }
+
 @media (max-width: 768px) {
     .masthead {
         min-height: 80vh;
     }
 }
+
 .showCaseText {
     font-size: 3rem;
     position: absolute;
     width: 100%;
     height: 100%;
 }
+
 @media (min-width:1024px) {
     .showCaseText {
         font-size: 4rem;
@@ -59,18 +73,62 @@
 .aboutImg {
     border-radius: 60px;
 }
+
 .aboutImg2 {
     margin-top: 60px;
 }
+
+@media (min-width:960px) {
+    .aboutImg {
+        border-radius: 90px;
+    }
+
+    .aboutImg2 {
+        border-radius: 100px;
+    }
+}
+
+@media (min-width:576px) {
+    .aboutImg {
+        border-radius: 90px;
+    }
+
+    .aboutImg2 {
+        border-radius: 100px;
+    }
+}
+
 .aboutImg-right {
     border-radius: 30px;
     background-color: #EEEEEE;
     /* box-shadow: .5px .5px 15px black; */
 }
-.aboutImg-right:hover {
-    background-color: #e1e1e1;
-}
+
+    .aboutImg-right:hover {
+        background-color: #e1e1e1;
+    }
+
 .AboutText {
     color: #512A10;
     font-weight: 600;
 }
+
+.btn-menu {
+    background-color: #E4E4E4;
+    color: #000;
+    border-radius: 10px;
+}
+
+    .btn-menu:hover {
+        background-color: #b7b7b7;
+        color: #000;
+    }
+
+.menu-card {
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+    .menu-card:hover {
+        transform: scale(1.03);
+    }
