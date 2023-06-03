@@ -1,7 +1,7 @@
-﻿    @{
-    ViewData["Title"] = "Log-In";
+﻿@{
+    ViewData["Title"] = "logIn";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
-    }
+}
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
             <div class="col-5 left-img-login d-none d-md-block"></div>
@@ -9,7 +9,7 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="col-10 col-lg-7 mt-4">
                         <a href="#" class="Login-Logo">
-                            <img src="./img/logo.png" class="pb-3" alt="logo">
+                            <img src="../img/logo.png" class="pb-3" alt="logo">
                             Coffee Time
                         </a>
                         <form>
@@ -27,10 +27,10 @@
                             </div>
                             <div class="form-text d-flex justify-content-between mb-3">
                                 <span class="Rest-Right">Don't Have Account?</span>
-                                <a href="#" class="Rest-Link">SignUp</a>
+                                <a asp-controller="Account" asp-action="Signup" class="Rest-Link">SignUp</a>
                             </div>
                             <div class="d-grid col-md-7 col-9">
-                                <button class="btn login-btn" type="button"><i class="fas fa-arrow-alt-circle-left pe-1"></i>Back To Home</button>
+                                <a asp-controller="Home" asp-action="Index" class="btn login-btn"><i class="fas fa-arrow-alt-circle-left pe-1"></i>Back To Home</a>
                             </div>
                         </form>
                     </div>

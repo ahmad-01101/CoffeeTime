@@ -12,6 +12,7 @@ namespace CoffeeTime.Controllers
         public IActionResult Signup()
         {
             return View();
-        } 
+        }
+
     }
 }
