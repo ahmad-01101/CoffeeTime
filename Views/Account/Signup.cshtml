@@ -1,0 +1,44 @@
+﻿        @{
+        ViewData["Title"] = "SignUp";
+        Layout = "~/Views/Shared/_AccountLayout.cshtml";
+        }
+    <div class="container-fluid">
+        <div class="row container-hight">
+            <div class="col-5 left-img-signup d-none d-md-block"></div>
+            <div class="col my-md-auto">
+                <div class="row justify-content-center">
+                    <div class="col-10 col-lg-7 mt-3">
+                        <a href="#" class="Login-Logo">
+                            <img src="./img/logo.png" class="pb-3" alt="logo">
+                            Coffee Time
+                        </a>
+                        <form>
+                            <label class="form-label h3 login-label">Name<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control mb-3" placeholder="">
+
+                            <label class="form-label h3 login-label">Email<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control mb-3" placeholder="e.g. ahmad@gmail.com">
+
+                            <label class="form-label h3 login-label">Phone<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control mb-3" placeholder="e.g. 050-000-0000">
+
+                            <label class="form-label h3 login-label">Password<span class="text-danger">*</span></label>
+                            <input type="password" class="form-control mb-3" placeholder="Must be strong">
+
+                            <label class="form-label h3 login-label">Confirm Password<span class="text-danger">*</span></label>
+                            <input type="password" class="form-control mb-3">
+
+                            <div class="d-grid col-6 mx-auto mb-2">
+                                <button class="btn login-btn" type="button">SignUp</button>
+                            </div>
+
+                            <div class="form-text d-flex justify-content-between mb-3">
+                                <span class="Rest-Right">Already Have An Account?</span>
+                                <a href="#" class="Rest-Link">LogIn</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
