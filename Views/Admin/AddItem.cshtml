@@ -1,0 +1,25 @@
+﻿@model CoffeeTime.Models.MenuListVm
+@{
+    ViewData["Title"] = "Add Item";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col">
+    <div class="row p-md-4 mt-3 shadow m-md-4 justify-content-lg-center">
+        <div class="col-12 col-lg-9">
+            <h1 class="header me-4 me-md-5">Add New Item</h1>
+        </div>
+        <div class="col col-lg-9 pe-lg-5">
+            <form asp-controller="Admin" asp-action="AddItem">
+                <label asp-for="ItemName" class="form-label h5 AddItem-label">Name</label>
+                <input asp-for="ItemName" type="text" class="form-control mb-3 AddItem-input" placeholder="Write the item name here  e.g. Americano">
+
+                <label asp-for="ItemPrice" class="form-label h5 AddItem-label">Price</label>
+                <input asp-for="ItemPrice" type="number" class="form-control mb-3 AddItem-input" placeholder="Write the price in SAR">
+
+                <div class="d-grid col-4 col-md-5 mx-auto mb-2">
+                    <button class="btn AddItem-btn" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

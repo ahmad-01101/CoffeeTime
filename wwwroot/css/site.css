@@ -70,6 +70,21 @@
     }
 }
 /* about section */
+.AboutBackground {
+    background-image: url('../img/AboutBackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.sectionsHeader {
+    font-weight: 900;
+}
+
+.headerSpan {
+    color: #713d1b;
+}
+
 .aboutImg {
     border-radius: 60px;
 }
@@ -100,37 +115,38 @@
 
 .aboutImg-right {
     border-radius: 30px;
-    background-color: #EEEEEE;
+    background-color: rgb(252, 239, 230);
 }
 
     .aboutImg-right:hover {
-        background-color: #e1e1e1;
+        background-color: rgb(254, 232, 217);
     }
 
 .AboutText {
     color: #512A10;
     font-weight: 600;
 }
-
-.btn-menu {
-    background-color: #E4E4E4;
-    color: #000;
-    border-radius: 10px;
+/* menu section */
+.MenuBackground {
+    background-image: url('../img/MenuBackground1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
-
-    .btn-menu:hover {
-        background-color: #b7b7b7;
-        color: #000;
-    }
 
 .menu-card {
     border-radius: 20px;
     transition: all 0.3s;
+    background-color: rgb(252, 239, 230);
 }
 
     .menu-card:hover {
         transform: scale(1.03);
     }
+
+.card-button:hover {
+    color: #cb9d79;
+}
 /* login page */
 .Login-Logo {
     font-weight: 900;
@@ -201,4 +217,74 @@
 
 .container-hight {
     height: 100vh;
+}
+/* admin layout start */
+
+/* side navbar */
+.sidebar {
+    border-radius: 0px 40px 40px 0px;
+    background-color: #713D1B;
+}
+
+.row-hight {
+    height: 100vh;
+}
+
+.Login-Logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: .2px;
+    color: #fff;
+    text-decoration: none;
+}
+
+    .Login-Logo:hover {
+        color: #fff;
+    }
+
+.side-link {
+    border-bottom: .1px rgba(255, 255, 255, 0.226) solid;
+}
+
+    .side-link a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.4rem;
+    }
+
+    .side-link:hover {
+        text-decoration: none;
+        color: #a2a2a2;
+        border-radius: 5px;
+        background-color: #af4600;
+    }
+
+.offSetbutton {
+    background-color: #713D1B;
+    border: 1px rgba(255, 255, 255, 0.419) solid;
+    border-radius: 3px;
+}
+
+    .offSetbutton i {
+        color: #fff;
+    }
+
+.logout-button {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+/* left side content */
+.AddItem-btn {
+    background-color: #713D1B;
+    color: #fff;
+}
+
+    .AddItem-btn:hover {
+        background-color: #512A10;
+        color: #fff;
+    }
+
+.AddItem-label {
+    color: #000;
 }

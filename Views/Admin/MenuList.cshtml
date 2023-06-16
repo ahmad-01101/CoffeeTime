@@ -1,0 +1,46 @@
+﻿@model List<CoffeeTime.Models.Domain.MenuList>
+@{
+    ViewData["Title"] = "Menu List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col">
+    <div class="row p-md-4 mt-3 shadow m-md-4">
+        <div class="col-12 d-inline-flex">
+            <h1 class="header me-4 me-md-5">Menu List</h1>
+            <button class="btn btn-outline-secondary"><i class="fas fa-plus" style="color: black;"></i> Add New Item</button>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>@item.ItemName</td>
+                        <td>@item.ItemPrice SAR</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Action
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
