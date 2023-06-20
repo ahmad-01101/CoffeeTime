@@ -1,1 +1,46 @@
 ﻿@model List<CoffeeTime.Models.Domain.Products>
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<!-- Cart section -->
+<div class="container">
+    <div class="row mb-md-4"></div>
+    <div class="row p-md-4 m-md-5 mt-5 shadow Cart-Container">
+        <div class="col-12 d-inline-flex justify-content-between justify-content-md-start align-items-center">
+            <h3 class="header mt-2 me-5"><strong>Cart</strong></h3>
+            <!-- <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus" style="color: black;"></i> Give us your feedback</button> -->
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            <a asp-route="Decrease" asp-route-id="@item.Id"><i class="fas fa-minus"></i></a>
+                            <span class="px-2">@item.Quantity</span>
+                            <a asp-route="Increase" asp-route-id="@item.Id"><i class="fas fa-plus"></i></a>
+                        </td>
+                            <td>@item.Price SAR</td> DeleteItem
+                        <td>
+                            <a asp-route="DeleteItem" asp-route-id="@item.Id"><i class="fas fa-trash-can" style="color: red;"></i></a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    

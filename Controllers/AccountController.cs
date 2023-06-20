@@ -12,9 +12,23 @@ namespace CoffeeTime.Controllers
         {
             _accountRepository = accountRepository;
         }
-        public IActionResult Login()
+        public IActionResult Login() { 
+        
+            return View(); 
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(SignInUser signInUser)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var result = await _accountRepository.PasswordSignInAsync(signInUser);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Home", "Home");
+                }
+                ModelState.AddModelError("", "Invalid credentials");
+            }
+            return View(signInUser);
         }
 
         public IActionResult Signup(bool isSuccess = false)
@@ -42,6 +56,10 @@ namespace CoffeeTime.Controllers
             }
             return View();
         }
-
+        public async Task<IActionResult> Logout()
+        {
+            await _accountRepository.SignOutAsync();
+            return RedirectToAction("Home", "Home");
+        }
     }
 }

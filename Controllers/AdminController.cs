@@ -12,7 +12,7 @@ namespace CoffeeTime.Controllers
         {
             this.coffeeTimeDbContext = coffeeTimeDbContext;
         }
-        public async Task<IActionResult> AddItem()
+        public IActionResult AddItem()
         {
             return View();
         }

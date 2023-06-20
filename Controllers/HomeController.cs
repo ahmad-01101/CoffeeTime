@@ -2,6 +2,7 @@
 using CoffeeTime.Models;
 using CoffeeTime.Models.Domain;
 using CoffeeTime.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,47 +20,52 @@ namespace CoffeeTime.Controllers
             _userRepository = userRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Home()
         {
             var Item = await coffeeTimeDbContext.MenuList.ToListAsync();
             return View(Item);
         }
 
+        [Authorize]
         [Route("Add-Item/{Id}", Name = "AddItem")]
         public async Task<IActionResult> AddCartItem(int Id)
         {
-            //var CheckItem = await coffeeTimeDbContext.Products.FirstOrDefaultAsync(x => x.ItemStatus == menuList.ItemName+"open");
-            //var CheckItem = await coffeeTimeDbContext.Products.ToListAsync();
-            ////var name = "Americano";
-            //var ItemStatus = ;
-            _ = await _userRepository.AddItem1(Id);
-            return RedirectToAction("Index");
+            _ = await _userRepository.AddItem4(Id);
+            return RedirectToAction("Home");
         }   
+        
+        [Authorize]
+        [Route("Increase-Quantity/{Id}", Name = "Increase")]
+        public async Task<IActionResult> IncreaseQuantity(int Id)
+        {
+            _ = await _userRepository.IncreaseQuantity(Id);
+            return RedirectToAction("ViewCart");
+        } 
+        
+        [Authorize]
+        [Route("Decrease-Quantity/{Id}", Name = "Decrease")]
+        public async Task<IActionResult> DecreaseQuantity(int Id)
+        {
+            _ = await _userRepository.DecreaseQuantity(Id);
+            return RedirectToAction("ViewCart");
+        }    
+        
+        [Authorize]
+        [Route("Delete-Item/{Id}", Name = "DeleteItem")]
+        public async Task<IActionResult> DeleteItem(int Id)
+        {
+            _ = await _userRepository.DeleteItem(Id);
+            return RedirectToAction("ViewCart");
+        }    
         
         public async Task<IActionResult> ViewCart()
         {
-            var CartItems = await _userRepository.ViewCart();
+            var CartItems = await _userRepository.ViewCart1();
             if (CartItems != null)
             {
 
             }
             return View(CartItems);
-        }
-
-        public async Task<IActionResult> AddCartItem1(CartListVm cartListVm)
-        {
-            //var name = "Americano";
-            var ItemStatus = "AmericanoOpen";
-            _ = await _userRepository.AddItem(cartListVm, ItemStatus);
-            return RedirectToAction("Index");
-        } 
-
-        public async Task<IActionResult> AddCartItem2(CartListVm cartListVm)
-        {
-            //var name = "Espresso";
-            var ItemStatus = "EspressoOpen";
-            _ = await _userRepository.AddItem(cartListVm, ItemStatus);
-            return RedirectToAction("Index");
         }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoffeeTime.Migrations
 {
     [DbContext(typeof(CoffeeTimeDbContext))]
-    [Migration("20230616034436_addedUserColumn")]
-    partial class addedUserColumn
+    [Migration("20230617063432_inti")]
+    partial class inti
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -135,7 +135,13 @@ namespace CoffeeTime.Migrations
                     b.Property<float>("TotalPrice")
                         .HasColumnType("real");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("OrderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Order");
                 });
@@ -303,6 +309,17 @@ namespace CoffeeTime.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("CoffeeTime.Models.Domain.Order", b =>
+                {
+                    b.HasOne("CoffeeTime.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("CoffeeTime.Models.Domain.Products", b =>

@@ -133,7 +133,13 @@ namespace CoffeeTime.Migrations
                     b.Property<float>("TotalPrice")
                         .HasColumnType("real");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("OrderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Order");
                 });
@@ -301,6 +307,17 @@ namespace CoffeeTime.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("CoffeeTime.Models.Domain.Order", b =>
+                {
+                    b.HasOne("CoffeeTime.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("CoffeeTime.Models.Domain.Products", b =>

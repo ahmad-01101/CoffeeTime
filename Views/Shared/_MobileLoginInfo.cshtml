@@ -1,0 +1,50 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManger
+
+@if(_signInManger.IsSignedIn(User)){
+    <li class="nav-list mb-3">
+        <h4>wolcome @User.FindFirst("FirstName").Value</h4>
+    </li>
+    <li class="nav-list mb-3">
+        <a href="#" class="link-style">Home</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a href="#WhyUs" class="link-style">Why Us</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a href="#Menu" class="link-style">Menu</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a href="#Contact" class="link-style pe-xl-5">Contact</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a href="#" class="link-style pe-xl-5">My Account</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a asp-controller="Home" asp-action="ViewCart" class="link-style"><i class="fas fa-cart-shopping pe-2 nav-icons"></i>Cart</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a asp-controller="Account" asp-action="Logout" type="button"
+            class="btn btn-danger btn-sm border border-4 border-danger px-3">
+            Logout
+        </a>
+    </li>
+}
+else{
+    <li class="nav-list mb-3">
+        <a href="#" class="link-style">Home</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a href="#WhyUs" class="link-style">Why Us</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a href="#Menu" class="link-style">Menu</a>
+    </li>
+    <li class="nav-list mb-3">
+        <a href="#Contact" class="link-style pe-xl-5">Contact</a>
+    </li>
+    <ul class="d-inline-block nav-list navbar-nav" style="color: #fff;">
+        <a asp-controller="Account" asp-action="Login" class="link-style mx-3">LogIn</a>
+        |
+        <a asp-controller="Account" asp-action="Signup" class="link-style mx-3">SignUp</a>
+    </ul>
+}

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CoffeeTime.Models.Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoffeeTime.Models
 {

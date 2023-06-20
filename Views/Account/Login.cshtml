@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CoffeeTime.Models.SignInUser
+
+@{
     ViewData["Title"] = "logIn";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
@@ -12,25 +14,41 @@
                             <img src="../img/logo.png" class="pb-3" alt="logo">
                             Coffee Time
                         </a>
-                        <form>
-                            <label class="form-label h2 login-label">Email</label>
-                            <input type="email" class="form-control mb-3" placeholder="e.g. ahmad@gmail.com">
+                        <form method="post" asp-controller="Account" asp-action="Login">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                            <label class="form-label h2 login-label">Password</label>
-                            <input type="password" class="form-control">
+                            <div class="form-group col-form-label text-right">
+                                <label asp-for="Email" class="form-label h3 login-label">Email<span class="text-danger">*</span></label>
+                                <input asp-for="Email" type="email" class="form-control mb-3" placeholder="e.g. ahmad@gmail.com">
+                                <span asp-validation-for="Email" class="validation-text"></span>
+                            </div>
+
+                            <div class="form-group col-form-label text-right">
+                                <label asp-for="Password" class="form-label h3 login-label">Password<span class="text-danger">*</span></label>
+                                <input asp-for="Password" type="password" class="form-control mb-3" placeholder="Must be strong">
+                                <span asp-validation-for="Password" class="validation-text"></span>
+                            </div>
+
+@*                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                <input class="form-check-input" asp-for="RememberMe" />
+                                </label>
+                            </div>*@
+
                             <div class="form-text d-flex justify-content-between mb-3">
                                 <span class="Rest-Right">Forget Password ?</span>
                                 <a href="#" class="Rest-Link">Recover It</a>
                             </div>
+
                             <div class="d-grid col-6 mx-auto mb-2">
-                                <button class="btn login-btn" type="button">LogIn</button>
+                                <button class="btn login-btn" type="submit">LogIn</button>
                             </div>
                             <div class="form-text d-flex justify-content-between mb-3">
                                 <span class="Rest-Right">Don't Have Account?</span>
                                 <a asp-controller="Account" asp-action="Signup" class="Rest-Link">SignUp</a>
                             </div>
                             <div class="d-grid col-md-7 col-9">
-                                <a asp-controller="Home" asp-action="Index" class="btn login-btn"><i class="fas fa-arrow-alt-circle-left pe-1"></i>Back To Home</a>
+                                <a asp-controller="Home" asp-action="Home" class="btn login-btn"><i class="fas fa-arrow-alt-circle-left pe-1"></i>Back To Home</a>
                             </div>
                         </form>
                     </div>

@@ -1,0 +1,27 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManger
+
+@if(_signInManger.IsSignedIn(User)){
+    <div class="btn-group" role="group">
+        <a asp-controller="Home" asp-action="ViewCart"><i class="fas fa-cart-shopping pt-3 pe-2 fa-xl nav-icons"></i></a>
+        <button type="button" class="account-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user fa-lg nav-icons"></i>
+            <i class="fa-solid fa-chevron-down fa-lg nav-icons"></i>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout">LogOut</a></li>
+            <li><a class="dropdown-item" href="#">My Account</a></li>
+        </ul>
+        <h6 class="pt-lg-1 text-light">wolcome @User.FindFirst("FirstName").Value</h6>
+    </div>
+}
+else{
+    <ul class="d-flex align-items-center nav-list navbar-nav text-end" style="color: #fff;">
+        <li class="nav-list">
+            <a asp-controller="Account" asp-action="Login" class="link-style mx-3">LogIn</a>
+        </li>
+        |
+        <li class="nav-list">
+            <a asp-controller="Account" asp-action="Signup" class="link-style mx-3">SignUp</a>
+        </li>
+    </ul>
+}
