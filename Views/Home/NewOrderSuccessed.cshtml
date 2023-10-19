@@ -1,0 +1,69 @@
+﻿@model List<CoffeeTime.Models.Domain.Products>
+@{
+    ViewData["Title"] = "Checkoutdone";
+    Layout = "~/Views/Shared/_UserLayout2.cshtml";
+}
+
+@if (ViewBag.isSuccess == true)
+{
+    <div class="container">
+        <div class="row mx-1 mx-md-5 justify-content-center mt-3">
+            <div class="col-12 col-md-8 success-alert shadow">
+                <div class="row">
+                    <div class="col-12 text-center pt-4 pb-3">
+                        <!-- <i class="fas fa-check-circle fa-2xl" style="color: green; font-size: 4rem;"></i> -->
+                        <i class="fa-regular fa-circle-check fa-2xl" style="color: #00c917; font-size: 3.2rem;"></i>
+                    </div>
+                    <div class="col-12 text-center">
+                        <h3>Your order sent successfully</h3>
+                        <h5><a asp-action="OrderHistory" class="Orders-link">Click here</a> to Track Your Orders</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 p-3 p-lg-4 Invoice-Container shadow-lg mb-4 mt-3">
+                <h2 class="text-center">Invoice</h2>
+                <ul class="list-group mb-2">
+                    <li class="d-flex justify-content-between mb-4">
+                        <div>
+                            <h6 class="my-0"><strong>Ahmad Ibrahim</strong></h6>
+                            <strong>Number @Model.FirstOrDefault().Order.Id</strong>
+                        </div>
+                        <strong class="">@Model.FirstOrDefault().Order.DateAndTime</strong>
+                    </li>
+                    @foreach (var item in Model)
+                    {
+                    <li class="d-flex justify-content-between border-bottom mb-3">
+                        <div>
+                            <h6 class="my-0">@item.Name</h6>
+                            <small class="text-muted">Quantity @item.Quantity</small>
+                        </div>
+                        <span class="text-muted">@item.Price SAR</span>
+                    </li>
+                    }
+                    <li class="d-flex justify-content-between text-danger">
+                        <strong>Total</strong>
+                        <strong>@Model.FirstOrDefault().Order.TotalPrice SAR</strong>
+                    </li>
+                </ul>
+                <div class="d-grid col-md-7 col-8 mt-3 mb-2">
+                    <a asp-action="Home" class="StoreLink"><strong><i class="fas fa-arrow-left pe-1"></i>Back To Store</strong></a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else{
+    <div class="row mx-1 mx-md-5 justify-content-center mt-5 py-5 CartBody shadow">
+        <div class="col-12 col-md-8 ">
+            <div class="row">
+                <div class="col-12 text-center pt-4 pb-3">
+                    <i class="fas fa-regular fa-exclamation-circle " style="color: #d1d100; font-size: 3.2rem;"></i>
+                </div>
+                <div class="col-12 text-center">
+                    <h3><strong>We can't find what you're looking for</strong></h3>
+                    <a asp-action="Home" class="StoreLink"><strong><i class="fas fa-arrow-left pe-1"></i>Back To Store</strong></a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

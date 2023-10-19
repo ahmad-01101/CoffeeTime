@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoffeeTime.Migrations
 {
     [DbContext(typeof(CoffeeTimeDbContext))]
-    [Migration("20230617063432_inti")]
-    partial class inti
+    [Migration("20230630081759_allModelsAdded")]
+    partial class allModelsAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,11 +99,8 @@ namespace CoffeeTime.Migrations
 
             modelBuilder.Entity("CoffeeTime.Models.Domain.MenuList", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ItemName")
                         .IsRequired()
@@ -119,14 +116,17 @@ namespace CoffeeTime.Migrations
 
             modelBuilder.Entity("CoffeeTime.Models.Domain.Order", b =>
                 {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateAndTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("OrderStatus")
                         .IsRequired()
@@ -148,13 +148,10 @@ namespace CoffeeTime.Migrations
 
             modelBuilder.Entity("CoffeeTime.Models.Domain.Products", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ItemStatus")
+                    b.Property<string>("ItemId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -162,8 +159,9 @@ namespace CoffeeTime.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
+                    b.Property<string>("OrderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Price")
                         .HasColumnType("real");

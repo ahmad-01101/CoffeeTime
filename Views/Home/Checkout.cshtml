@@ -1,0 +1,81 @@
+﻿@model List<CoffeeTime.Models.Domain.Products>
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="container">
+    <div class="row my-5 mx-1">
+        @if (Model.Count == 0)
+        {
+            @if (ViewBag.isSuccess == true)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    You have been registered successfully To LogIn
+                    <a asp-controller="Account" asp-action="Login">click here</a>.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            else{
+            <div class="alert alert-warning mt-5" role="alert">
+                <h4 class="alert-heading">Your Cart Is Empty !!</h4>
+                <p>You need to add items to your cart before checkout</p>
+                <hr>
+                <p class="mb-0">
+                    <div class="">
+                        <a asp-action="home" class="btn btn-sm login-btn" style="margin-bottom: -20px;"><i class="fas fa-arrow-alt-circle-left pe-1"></i>Back To Menu</a>
+                    </div>
+                </p>
+            </div>
+            }
+        }
+        else{
+        <div class="col-md-4 order-md-2 mb-2">
+            <h4 class="mt-2 d-flex justify-content-between align-items-center mb-3">
+                <span>Your Cart</span>
+            </h4>
+            <ul class="list-group mb-3">
+                @foreach (var item in Model){
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@item.Name</h6>
+                        <small class="text-muted">Quantity @item.Quantity</small>
+                    </div>
+                    <span class="text-muted">@item.Price SAR</span>
+                </li>
+                }
+                <li class="list-group-item d-flex justify-content-between">
+                    <span class="text-danger">Total (SAR)</span>
+                    <strong class="text-danger">@ViewBag.Total SAR</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+
+            <h4 class="mb-4 mt-1">Payment</h4>
+            <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                    <label class="custom-control-label" for="credit">Checkout in our store</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input disabled type="radio" class="custom-control-input">
+                    <label class="custom-control-label text-secondary" for="debit">
+                        Credit card
+                        <img src="../img/mada-color.svg" class="mx-1" alt="mada">
+                        <img src="../img/visa-color-v2.png" class="mx-1" alt="visa">
+                        <img src="../img/mastercard-color.svg" class="mx-1" alt="mastercard">
+                    </label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input disabled type="radio" class="custom-control-input">
+                    <label class="custom-control-label text-secondary">Apple Pay<i class="fa-brands fa-apple-pay fa-2xl m-2 text-dark"></i></label>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="d-grid col-6 col-md-4 mx-auto mb-2">
+                    <a asp-route="NewOrder" asp-route-id="@ViewBag.CartId" class="btn AddItem-btn">Place Order</a>
+            </div>
+        </div>
+        }
+    </div>
+</div>

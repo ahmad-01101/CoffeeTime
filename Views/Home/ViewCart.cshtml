@@ -1,46 +1,91 @@
 ﻿@model List<CoffeeTime.Models.Domain.Products>
 @{
     ViewData["Title"] = "Cart";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/_UserLayout2.cshtml";
 }
-<!-- Cart section -->
-<div class="container">
-    <div class="row mb-md-4"></div>
-    <div class="row p-md-4 m-md-5 mt-5 shadow Cart-Container">
-        <div class="col-12 d-inline-flex justify-content-between justify-content-md-start align-items-center">
-            <h3 class="header mt-2 me-5"><strong>Cart</strong></h3>
-            <!-- <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus" style="color: black;"></i> Give us your feedback</button> -->
+<div class="container mt-4">
+    @if(Model.Count == 0) {
+        <div class="row mx-1 mx-md-5 justify-content-center py-5 CartBody shadow">
+            <div class="col-12 col-md-8">
+                <div class="row">
+                    <div class="col-12 text-center pt-4 pb-3">
+                        <i class="fas fa-regular fa-exclamation-circle " style="color: #d1d100; font-size: 3.2rem;"></i>
+                    </div>
+                    <div class="col-12 text-center">
+                        <h3><strong>Your Cart Is Empty</strong></h3>
+                        <a asp-action="Home" class="StoreLink"><strong><i class="fas fa-arrow-left pe-1"></i>Back To Store</strong></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Item</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var item in Model)
-                    {
-                    <tr>
-                        <td>@item.Name</td>
-                        <td>
-                            <a asp-route="Decrease" asp-route-id="@item.Id"><i class="fas fa-minus"></i></a>
-                            <span class="px-2">@item.Quantity</span>
-                            <a asp-route="Increase" asp-route-id="@item.Id"><i class="fas fa-plus"></i></a>
-                        </td>
-                            <td>@item.Price SAR</td> DeleteItem
-                        <td>
-                            <a asp-route="DeleteItem" asp-route-id="@item.Id"><i class="fas fa-trash-can" style="color: red;"></i></a>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
+    }
+    else{
+    <div class="row justify-content-center justify-content-md-between">
+        <div class="col-11 col-md-6 col-xl-5 p-3 border Item-container shadow-sm">
+            <h2 class="text-muted">Shopping Cart</h2>
+            <ul class="list-group">
+                @foreach (var item in Model)
+                {
+                <li class="d-flex justify-content-between align-items-center mb-3 py-2 px-4 shadow-sm" style="background-color: rgb(245, 245, 245); border-radius: 20px;">
+
+                <div class="">
+                    <a asp-route="Decrease" asp-route-id="@item.Id"><i class="fas fa-minus" style="color: black;"></i></a>
+                    <span class="px-1">@item.Quantity</span>
+                    <a asp-route="Increase" asp-route-id="@item.Id"><i class="fas fa-plus" style="color: black;"></i></a>
+                </div>
+
+                <div class="text-center">
+                    <h6 class="my-0">@item.Name</h6>
+                    <small class="text-muted">@item.Price SAR</small>
+                </div>
+
+                <span class="text-muted">
+                    <a asp-route="DeleteItem" asp-route-id="@item.Id"><i class="fas fa-trash-can" style="color: red;"></i></a>
+                </span>
+                </li>
+                }
+                <div class="d-grid col-md-7 col-8 mt-3 mb-2">
+                    <a asp-action="Home" class="StoreLink"><strong><i class="fas fa-arrow-left pe-1"></i>Back To Store</strong></a>
+                </div>
+            </ul>
+        </div>
+        <div class="col-11 col-xl-6 mt-3 mt-md-0 col-md-5 p-3 Item-container-right shadow-sm">
+            <h2 class="text-muted">Payment</h2>
+            <div class="d-block my-3">
+                <div class="custom-control custom-radio mb-3">
+                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                    <label class="custom-control-label" for="credit">Checkout in our store</label>
+                </div>
+                <div class="custom-control custom-radio mb-2">
+                    <input disabled type="radio" class="custom-control-input Payment">
+                    <label class="custom-control-label text-secondary Payment">
+                        Credit card
+                        <img src="../img/mada-color.svg" class="mx-1" alt="mada">
+                        <img src="../img/visa-color-v2.png" class="mx-1" alt="visa">
+                        <img src="../img/mastercard-color.svg" class="mx-1" alt="mastercard">
+                    </label>
+                </div>
+                <div class="custom-control custom-radio mb-2">
+                    <input disabled type="radio" class="custom-control-input Payment">
+                    <label class="custom-control-label text-secondary Payment">
+                        Apple Pay
+                        <img src="../img/apple-pay.png" class="mx-1" alt="Apple Pay">
+                    </label>
+                </div>
+
+                <li class="p- d-flex justify-content-between align-items-end border-top border-1 border-secondary">
+                    <div>
+                        <small class="text-muted">Total Items @Model.Count</small>
+                        <h6 class="text-danger"><strong>Total (SAR)</strong></h6>
+                    </div>
+                    <span class="text-danger pb-1"><strong>@ViewBag.Total SAR</strong></span>
+                </li>
+
+                <div class="d-grid col-8 mt-2 mx-auto">
+                    <a asp-route="NewReq" asp-route-id="@Model.FirstOrDefault().Order.OrderId" class="btn CartBtn"><strong>Place Your Order</strong></a>
+                </div>
+            </div>
         </div>
     </div>
+    }
 </div>
-
-    

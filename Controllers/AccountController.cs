@@ -1,5 +1,6 @@
 ﻿using CoffeeTime.Models;
 using CoffeeTime.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeTime.Controllers
@@ -61,5 +62,23 @@ namespace CoffeeTime.Controllers
             await _accountRepository.SignOutAsync();
             return RedirectToAction("Home", "Home");
         }
+
+        //[AllowAnonymous, HttpGet("forgot-password")]
+        //public async Task<IActionResult> ForgotPassword()
+        //{
+        //    return View();
+        //}
+        
+        //[AllowAnonymous, HttpPost("forgot-password")]
+        //public async Task<IActionResult> ForgotPassword(ForgotPassword forgotPassword)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        ModelState.Clear();
+        //        forgotPassword.EmailSend = true;
+        //    }
+        //    return View(forgotPassword);
+        //}
+
     }
 }

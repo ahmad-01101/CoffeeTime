@@ -16,11 +16,14 @@ namespace CoffeeTime.Controllers
         {
             return View();
         }
+        Guid Guidid = Guid.NewGuid();
         [HttpPost]
         public async Task<IActionResult> AddItem(MenuListVm menuListVm)
         {
+            
             var NewItem = new MenuList()
             {
+                Id = Guidid.ToString(),
                 ItemName = menuListVm.ItemName,
                 ItemPrice = menuListVm.ItemPrice,
             };

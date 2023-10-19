@@ -9,7 +9,7 @@
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout">LogOut</a></li>
-            <li><a class="dropdown-item" href="#">My Account</a></li>
+            <li><a class="dropdown-item" asp-controller="Home" asp-action="OrderHistory">My Orders</a></li>
         </ul>
         <h6 class="pt-lg-1 text-light">wolcome @User.FindFirst("FirstName").Value</h6>
     </div>

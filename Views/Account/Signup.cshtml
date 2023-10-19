@@ -7,71 +7,79 @@
     <div class="row container-hight">
         <div class="col-5 left-img-signup d-none d-md-block"></div>
         <div class="col my-md-auto">
-            <div class="row justify-content-center">
-                <div class="col-10 col-lg-7 mt-3">
+            <form method="post" asp-controller="Account" asp-action="Signup">
+            <div class="row justify-content-center p-1 p-md-1 p-lg-5">
+                <div class="col-12 text-lg-start mt-3">
                     <a href="#" class="Login-Logo">
                         <img src="../img/logo.png" class="pb-3" alt="logo">
                         Coffee Time
                     </a>
-                    <form method="post" asp-controller="Account" asp-action="Signup">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        @if (ViewBag.isSuccess == true)
-                        {
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                You have been registered successfully To LogIn
-                                <a asp-controller="Account" asp-action="Login">click here</a>.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        }
-
-                        <div class="form-group col-form-label text-right">
-                            <label asp-for="FirstName" class="form-label h3 login-label">First Name<span class="text-danger">*</span></label>
-                            <input asp-for="FirstName" type="text" class="form-control mb-3" placeholder="">
-                            <span asp-validation-for="FirstName" class="validation-text"></span>
-                        </div>
-
-                        <div class="form-group col-form-label text-right">
-                            <label asp-for="LastName" class="form-label h3 login-label">Last Name<span class="text-danger">*</span></label>
-                            <input asp-for="LastName" type="text" class="form-control mb-3" placeholder="">
-                            <span asp-validation-for="LastName" class="validation-text"></span>
-                        </div>
-
-                        <div class="form-group col-form-label text-right"> 
-                            <label asp-for="Email" class="form-label h3 login-label">Email<span class="text-danger">*</span></label>
-                            <input asp-for="Email" type="email" class="form-control mb-3" placeholder="e.g. ahmad@gmail.com">
-                            <span asp-validation-for="Email" class="validation-text"></span>
-                        </div>
-
-                        <div class="form-group col-form-label text-right">
-                            <label asp-for="PhoneNumber" class="form-label h3 login-label">Phone Number<span class="text-danger">*</span></label>
-                            <input asp-for="PhoneNumber" type="number" class="form-control mb-3" placeholder="e.g. 050-000-0000">
-                            <span asp-validation-for="PhoneNumber" class="validation-text"></span>
-                        </div>
-
-                        <div class="form-group col-form-label text-right">
-                            <label asp-for="Password" class="form-label h3 login-label">Password<span class="text-danger">*</span></label>
-                            <input asp-for="Password" type="password" class="form-control mb-3" placeholder="Must be strong">
-                            <span asp-validation-for="Password" class="validation-text"></span>
-                        </div>
-
-                        <div class="form-group col-form-label text-right">
-                            <label asp-for="ConfirmPassword" class="form-label h3 login-label">Confirm Password<span class="text-danger">*</span></label>
-                            <input asp-for="ConfirmPassword" type="password" class="form-control mb-3">
-                            <span asp-validation-for="ConfirmPassword" class="validation-text"></span>
-                        </div>
-
-                        <div class="d-grid col-6 mx-auto mb-2">
-                            <button class="btn login-btn" type="submit">SignUp</button>
-                        </div>
-
-                        <div class="form-text d-flex justify-content-between mb-3">
-                            <span class="Rest-Right">Already Have An Account?</span>
-                            <a asp-controller="Account" asp-action="Login" class="Rest-Link">LogIn</a>
-                        </div>
-                    </form>
+                @if (ViewBag.isSuccess == true)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        You have been registered successfully To LogIn
+                        <a asp-controller="Account" asp-action="Login">click here</a>.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <div class="col-12 col-md-6">
+                    <div class="form-group col-form-label text-right">
+                        <label asp-for="FirstName" class="form-label h4 login-label">First Name<span class="text-danger">*</span></label>
+                        <input asp-for="FirstName" type="text" class="form-control mb-1" placeholder="">
+                        <span asp-validation-for="FirstName" class="validation-text"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group col-form-label text-right">
+                        <label asp-for="LastName" class="form-label h4 login-label">Last Name<span class="text-danger">*</span></label>
+                        <input asp-for="LastName" type="text" class="form-control mb-1" placeholder="">
+                        <span asp-validation-for="LastName" class="validation-text"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group col-form-label text-right">
+                        <label asp-for="Email" class="form-label h4 login-label">Email<span class="text-danger">*</span></label>
+                        <input asp-for="Email" type="email" class="form-control mb-1" placeholder="e.g. ahmad@gmail.com">
+                        <span asp-validation-for="Email" class="validation-text"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group col-form-label text-right">
+                        <label asp-for="PhoneNumber" class="form-label h4 login-label">Phone Number<span class="text-danger">*</span></label>
+                        <input asp-for="PhoneNumber" type="number" class="form-control mb-1" placeholder="e.g. 050-000-0000">
+                        <span asp-validation-for="PhoneNumber" class="validation-text"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group col-form-label text-right">
+                        <label asp-for="Password" class="form-label h4 login-label">Password<span class="text-danger">*</span></label>
+                        <input asp-for="Password" type="password" class="form-control mb-1" placeholder="Must be strong">
+                        <span asp-validation-for="Password" class="validation-text"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group col-form-label text-right">
+                        <label asp-for="ConfirmPassword" class="form-label h4 login-label">Confirm Password<span class="text-danger">*</span></label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control mb-1">
+                        <span asp-validation-for="ConfirmPassword" class="validation-text"></span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-grid col-6 mx-auto mb-2">
+                        <button class="btn login-btn" type="submit">SignUp</button>
+                    </div>
+                </div>
+                <div class="col-11">
+                    <div class="form-text d-flex justify-content-between mb-3">
+                        <span class="Rest-Right">Already Have An Account?</span>
+                        <a asp-controller="Account" asp-action="Login" class="Rest-Link">LogIn</a>
+                    </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>
