@@ -15,11 +15,21 @@
     <title>@ViewBag.Title</title>
 </head>
 <style>
-    * {
-        font-family: 'Times New Roman', Times, serif;
-        letter-spacing: .04rem;
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
-    /* navbar section */
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    * {
+        font-family: Arial, sans-serif;
+    }
+    /* mobile navbar section */
     .nav-style {
         background-color: rgba(81, 42, 16, .93);
         border-radius: 40px;
@@ -27,7 +37,7 @@
 
     .Logo {
         font-weight: 700;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         letter-spacing: .2px;
         color: #fff;
         text-decoration: none;
@@ -38,7 +48,7 @@
         }
 
     .link-style {
-        font-weight: 600;
+        font-weight: 500;
         font-size: 1.2rem;
         color: #fff;
         text-decoration: none;
@@ -60,7 +70,7 @@
     }
 
     .Login-Logo {
-        font-weight: 900;
+        font-weight: 700;
         font-size: 1.5rem;
         letter-spacing: .2px;
         color: #fff;
@@ -157,7 +167,7 @@
                                 <a href="#" class="link-style">Authorization</a>
                             </li>
                             <li class="nav-list mb-3">
-                                <a href="#" class="link-style">Menu</a>
+                                <a asp-action="AddItem" class="link-style">Menu</a>
                             </li>
                             <li class="nav-list mb-3">
                                 <a href="#" class="link-style pe-xl-5">Account</a>
@@ -188,13 +198,16 @@
                         <a href="#" class="">Authorization</a>
                     </li>
                     <li class="mb-4 side-link  py-2">
-                        <a href="#" class="">Menu</a>
+                        <a asp-action="AddItem" class="">Menu</a>
                     </li>
                     <li class="mb-4 side-link py-2">
                         <a href="#" class="">Account</a>
                     </li>
+
+                    <li class="mb-4 py-2">
+                        <button type="button" class="btn btn-danger btn-lg border border-4 border-danger mt-3 px-4">Logout</button>
+                    </li>
                 </ul>
-                <button type="button" class="btn btn-danger btn-lg border border-4 border-danger logout-button mb-5 ms-3 px-4">Logout</button>
             </div>      
             @RenderBody()
         </div>

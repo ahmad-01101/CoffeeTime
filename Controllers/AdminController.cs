@@ -12,24 +12,28 @@ namespace CoffeeTime.Controllers
         {
             this.coffeeTimeDbContext = coffeeTimeDbContext;
         }
-        public IActionResult AddItem()
+        public IActionResult AddItem(bool isSuccess = false)
         {
+            ViewBag.IsSuccess = isSuccess;
             return View();
         }
         Guid Guidid = Guid.NewGuid();
         [HttpPost]
         public async Task<IActionResult> AddItem(MenuListVm menuListVm)
         {
-            
-            var NewItem = new MenuList()
+            if (ModelState.IsValid)
             {
-                Id = Guidid.ToString(),
-                ItemName = menuListVm.ItemName,
-                ItemPrice = menuListVm.ItemPrice,
-            };
-            await coffeeTimeDbContext.AddAsync(NewItem);
-            await coffeeTimeDbContext.SaveChangesAsync();
-            return View();
+                var NewItem = new MenuList()
+                {
+                    Id = Guidid.ToString(),
+                    ItemName = menuListVm.ItemName,
+                    ItemPrice = (float)menuListVm.ItemPrice,
+                };
+                await coffeeTimeDbContext.AddAsync(NewItem);
+                await coffeeTimeDbContext.SaveChangesAsync();
+                return RedirectToAction(nameof(AddItem), new { isSuccess = true });
+            }
+            return View(menuListVm);
         }   
         
         public async Task<IActionResult> MenuList(MenuListVm menuListVm)

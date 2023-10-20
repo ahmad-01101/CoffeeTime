@@ -4,19 +4,33 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="col">
-    <div class="row p-md-4 mt-3 shadow m-md-4 justify-content-lg-center">
+    <div class="row p-md-4 mt-3 shadow m-md-4 justify-content-lg-center rounded-3">
         <div class="col-12 col-lg-9">
             <h1 class="header me-4 me-md-5">Add New Item</h1>
         </div>
         <div class="col col-lg-9 pe-lg-5">
+            @if (ViewBag.isSuccess == true)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    The item has been added successfully
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
             <form asp-controller="Admin" asp-action="AddItem">
-                <label asp-for="ItemName" class="form-label h5 AddItem-label">Name</label>
-                <input asp-for="ItemName" type="text" class="form-control mb-3 AddItem-input" placeholder="Write the item name here  e.g. Americano">
 
-                <label asp-for="ItemPrice" class="form-label h5 AddItem-label">Price</label>
-                <input asp-for="ItemPrice" type="number" class="form-control mb-3 AddItem-input" placeholder="Write the price in SAR">
+                <div class="form-group col-form-label text-right">
+                    <label asp-for="ItemName" class="form-label h4 AddItem-label">Item Name<span class="text-danger">*</span></label>
+                    <input asp-for="ItemName" type="text" class="form-control AddItem-input mb-1" placeholder="Enter the item name here  e.g. Americano">
+                    <span asp-validation-for="ItemName" class="text-danger"></span>
+                </div>
 
-                <div class="d-grid col-4 col-md-5 mx-auto mb-2">
+                <div class="form-group col-form-label text-right">
+                    <label asp-for="ItemPrice" class="form-label h4 AddItem-label">Item Price<span class="text-danger">*</span></label>
+                    <input asp-for="ItemPrice" type="text" class="form-control AddItem-input mb-1" placeholder="Enter the price in SAR">
+                    <span asp-validation-for="ItemPrice" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid col-4 col-md-5 mx-auto mb-2 mt-2">
                     <button class="btn AddItem-btn" type="submit">Add</button>
                 </div>
             </form>
