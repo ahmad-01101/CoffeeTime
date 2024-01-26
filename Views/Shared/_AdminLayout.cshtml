@@ -161,30 +161,29 @@
                     <div class="offcanvas-body" style="background-color: #512a10ed;">
                         <ul class="nav-list navbar-nav mx-auto text-center" style="color: #fff;">
                             <li class="nav-list mb-3">
-                                <a href="#" class="link-style">Orders</a>
+                                <a asp-controller="Admin" asp-action="CustomerOrders" class="link-style">Orders</a>
                             </li>
                             <li class="nav-list mb-3">
-                                <a href="#" class="link-style">Authorization</a>
+                                <a asp-controller="Roles" asp-action="listroles" class="link-style">Authorization</a>
                             </li>
                             <li class="nav-list mb-3">
-                                <a asp-action="AddItem" class="link-style">Menu</a>
+                                <a asp-controller="Admin" asp-action="MenuList" class="link-style">Menu</a>
                             </li>
-                            <li class="nav-list mb-3">
+@*                             <li class="nav-list mb-3">
                                 <a href="#" class="link-style pe-xl-5">Account</a>
-                            </li>
+                            </li> *@
                             <li class="nav-list mb-3">
-                                <button type="button"
-                                        class="btn btn-danger btn-sm border border-4 border-danger px-3">
+                                <a asp-controller="Account" asp-action="Logout" class="btn btn-danger btn-sm border border-4 border-danger px-3">
                                     Logout
-                                </button>
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
-        <div class="row row-hight">
-            <div class="col-4 col-lg-3 col-xl-2 text-start sidebar d-none d-md-block align-content-stretch pt-4">
+        <div class="row">
+            <div class="col-4 col-lg-3 col-xl-2 text-start sidebar d-none d-md-block h-100 position-fixed pt-4">
                 <a href="#" class="Login-Logo">
                     <img src="~/img/Adminlogo.png" class="pb-3" alt="logo">
                     Coffee Time
@@ -192,23 +191,25 @@
                 <h5 class="text-start text-light ps-1 pb-4">Welcome Ahmad</h5>
                 <ul class="nav-list mt-4 navbar-nav text-center">
                     <li class="mb-4 side-link  py-2">
-                        <a href="#" class="">Orders</a>
+                        <a asp-controller="Admin" asp-action="CustomerOrders" class="">Orders</a>
                     </li>
                     <li class="mb-4 side-link  py-2">
-                        <a href="#" class="">Authorization</a>
+                        <a asp-controller="Roles" asp-action="listroles" class="">Authorization</a>
                     </li>
                     <li class="mb-4 side-link  py-2">
-                        <a asp-action="AddItem" class="">Menu</a>
+                        <a asp-controller="Admin" asp-action="MenuList" class="">Menu</a>
                     </li>
-                    <li class="mb-4 side-link py-2">
+@*                     <li class="mb-4 side-link py-2">
                         <a href="#" class="">Account</a>
-                    </li>
+                    </li> *@
 
                     <li class="mb-4 py-2">
-                        <button type="button" class="btn btn-danger btn-lg border border-4 border-danger mt-3 px-4">Logout</button>
+                        <a asp-controller="Account" asp-action="Logout" class="btn btn-danger btn-lg border border-4 border-danger mt-3 px-4">Logout</a>
                     </li>
                 </ul>
             </div>      
+            <div class="col-md-4 col-lg-3 col-xl-2"></div>
+
             @RenderBody()
         </div>
     </div>

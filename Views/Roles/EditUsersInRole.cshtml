@@ -1,0 +1,41 @@
+﻿@model List<UserRoleModel>
+@using Microsoft.AspNetCore.Identity
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var roleId = ViewBag.roleId;
+    var roleName = ViewBag.roleName;
+}
+
+<div class="col">
+    <div class="row p-md-4 pt-3 shadow m-md-4">
+        <form method="post">
+            <div class="col-12 d-inline-flex mb-3">
+                <h1 class="header me-4 me-md-5 mt-1">Edit Role</h1>
+            </div>
+            <div class="col">
+                <div class="card border border-dark text-start" style="background-color: #d6cdc6">
+                    <div class="card-header">
+                        <h2>add or delete users form (@ViewBag.roleName) role</h2>
+                    </div>
+                    <div class="card-body">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <div class="form-check form-group text-left m-1">
+                                <input type="hidden" asp-for="@Model[i].UserId" />
+                                <input type="hidden" asp-for="@Model[i].UserName" />
+                                <input asp-for="@Model[i].IsSelected" class="form-check-input" />
+                                <label asp-for="@Model[i].IsSelected" class="form-check-label">
+                                    @Model[i].UserName
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-footer text-muted">
+                        <input class="btn btn-secondary" type="submit" value="Update" />
+                        <a asp-action="EditRoles" asp-route-id="@roleId" class="btn btn-secondary" type="button">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

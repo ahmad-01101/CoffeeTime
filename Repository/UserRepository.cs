@@ -179,7 +179,7 @@ namespace CoffeeTime.Repository
             // if the current user doesn't have products in his open order then close the order
             if (Getuseritems.Count == 0)
             {
-                CheckUser.OrderStatus = "Closed";
+                CheckUser.OrderStatus = "Canceled";
                 await coffeeTimeDbContext.SaveChangesAsync();
             }
             return null;

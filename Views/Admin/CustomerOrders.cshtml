@@ -1,0 +1,51 @@
+﻿@model List<CoffeeTime.Models.Domain.Order>
+@{
+    ViewData["Title"] = "Menu List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col">
+    <div class="row p-md-4 mt-3 shadow m-md-4 rounded-3">
+        <div class="col-12 d-inline-flex">
+            <h1 class="header me-4 me-md-5 mt-1">Customer Orders</h1>
+        </div>
+        <form class="d-flex" asp-controller="Admin" asp-action="CustomerOrders">
+            <input name="Id" class="form-control me-1" type="search" placeholder="Search" aria-label="Search" value="@ViewData["CurrentFilter"]">
+            <button class="btn btn-dark" type="submit">Search by name</button>
+        </form>
+        <partial name="_NotificationStatus"></partial>
+        <div class="col">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Order in Model)
+                    {
+                        <tr>
+                            <td>@Order.Id</td>
+                            <td>@Order.DateAndTime</td>
+                            <td>@Order.TotalPrice SAR</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @Order.OrderStatus
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a asp-route="OrderReady" asp-route-id="@Order.OrderId" class="dropdown-item">Ready</a></li>
+                                        <li><a asp-route="OrderClosed" asp-route-id="@Order.OrderId" class="dropdown-item">Closed</a></li>
+                                        <li><a asp-route="OrderCanceled" asp-route-id="@Order.OrderId" class="dropdown-item">Canceled</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

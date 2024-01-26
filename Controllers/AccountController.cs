@@ -1,6 +1,7 @@
 ﻿using CoffeeTime.Models;
 using CoffeeTime.Repository;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeTime.Controllers
@@ -20,16 +21,25 @@ namespace CoffeeTime.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(SignInUser signInUser)
         {
+
             if (ModelState.IsValid)
             {
                 var result = await _accountRepository.PasswordSignInAsync(signInUser);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Home", "Home");
+                    if (User.IsInRole("admin"))
+                    {
+                        return RedirectToAction("Home", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("CustomerOrders", "Admin");
+                    }
                 }
                 ModelState.AddModelError("", "Invalid credentials");
             }
             return View(signInUser);
+            
         }
 
         public IActionResult Signup(bool isSuccess = false)
